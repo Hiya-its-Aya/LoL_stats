@@ -4,8 +4,19 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+const bodyParser = require('body-parser')
+
+const cors = require('cors')
+
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(bodyParser.json())
+
+
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello Summoner!" });
+  return res.status(200).json({ message: "Hello Summoner!" });
 });
 
 app.get("/summonersearch", (req, res) => {

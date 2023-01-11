@@ -3,7 +3,7 @@ const path = require('path');
 const { EntryOptionPlugin } = require('webpack');
 
 module.exports = {
-    mode: 'development',
+    mode: process.env.NODE_ENV,
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, "build"),
@@ -28,12 +28,23 @@ module.exports = {
         }),
     ],
     devServer: {
+        // static: {
+    
+        //     directory: path.join(__dirname, 'public'),
+        //   },
         static: {
-            publicPath: '/build',
-            directory: path.resolve(__dirname, 'build')
+            publicPath: '/',
+            directory: path.join(__dirname)
         },
+    
+        port: 8080,
+        compress: true,
         proxy: {
-            '/': { target: 'http://localhost:3000'}
+        '/**':{
+            target: 'http://localhost:3000', 
+            secure: false
+        },
         }
+        },
+        
     }
-}
