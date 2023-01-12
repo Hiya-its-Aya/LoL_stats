@@ -15,7 +15,9 @@ riotAPI.getPlayerInfo = (req, res, next) => {
     }
     return next();
   })
-  .catch(err => next(err))
+  .catch (err => {
+    console.log(err)
+    next(err)});
   
 }
 
@@ -29,7 +31,9 @@ riotAPI.getMatches = (req, res, next) => {
     console.log(res.locals.games)
     return next();
   })
-  .catch (err => next(err));
+  .catch (err => {
+    console.log(err)
+    next(err)});
   
 }
 

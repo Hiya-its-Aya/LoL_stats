@@ -10,6 +10,9 @@ signinController.postAccount = (req, res, next) => {
     //go to api caller
     return next();
   })
+  .catch (err => {
+    console.log(err)
+    next(err)});
 }
 
 module.exports = signinController;

@@ -1,17 +1,10 @@
 const express = require("express");
-
 const PORT = process.env.PORT || 3000;
-
 const app = express();
-
 const signinController = require('./signinController');
-
 const bodyParser = require('body-parser');
-
 const path = require('path');
-
 const cors = require('cors');
-
 const riotAPI = require('./riotAPI')
 
 
@@ -31,10 +24,8 @@ app.get("/", (req, res) => {
 });
 
 app.post('/signin', signinController.postAccount,  (req, res) => {
-  // res.redirect(`/${res.locals.summoner}`)
-  // return res.status(200).json(res.locals.summoner);
   console.log(res.locals.summoner)
-  return res.redirect(302, `/profile/${res.locals.summoner}`)//.json(res.locals.sumData)
+  return res.redirect(302, `/profile/${res.locals.summoner}`)
 })
 
 app.get('/profile/:id', riotAPI.getPlayerInfo, riotAPI.getMatches, (req, res) => {
@@ -44,10 +35,7 @@ app.get('/profile/:id', riotAPI.getPlayerInfo, riotAPI.getMatches, (req, res) =>
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
-/**
- * express error handler
- * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
- */
+
 
 app.use((err, req, res, next) => {
   const defaultErr = {
