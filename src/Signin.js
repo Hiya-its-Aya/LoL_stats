@@ -24,7 +24,7 @@ const Signin = () => {
           <input type='riotID' required placeholder="leagueSummoner"/>
         </label>
         <br />
-        <button>Sign Up</button>
+        <button >Sign Up</button>
       </form>
     )
 }

@@ -5,6 +5,7 @@ import Signin from "./Signin";
 import Header from './Header';
 import { HashRouter, BrowserRouter, Routes , Route} from "react-router-dom";
 import Login from "./Login";
+import Account from "./Account";
 // import { useState, useEffect } from "react";
 
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
             <Route path = '/signin' element = {<Signin />}/>
             <Route path = '/login' element = {<Login />}/>
           <Route/>
-          <Route path ='/profile/:id' ></Route>
+          <Route path ='/profile/:id' element = {<Account />}></Route>
         </Routes>
     )
 }
