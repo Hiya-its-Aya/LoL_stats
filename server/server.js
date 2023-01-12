@@ -12,6 +12,8 @@ const path = require('path');
 
 const cors = require('cors');
 
+const riotAPI = require('./riotAPI')
+
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -20,12 +22,18 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '/build')));
 
+app.get('/signin', (req,res) =>{
+  express.static(path.join(__dirname,'../build'));
+  
+});
+
 app.get("/", (req, res) => {
   return res.status(200).json({ message: "Hello summoner!" });
 });
 
-app.post('/signin', signinController.postAccount, (req, res) => {
-  return res.status(200).json(res.locals.summoner)
+app.post('/signin', signinController.postAccount, riotAPI.getPlayerInfo,  (req, res) => {
+  // res.redirect(`/${res.locals.summnoner}`)
+  // return res.status(200).json(res.locals.summoner);
 })
 
 // app.get("/summonersearch", (req, res) => {
