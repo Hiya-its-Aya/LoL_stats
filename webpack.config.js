@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const { EntryOptionPlugin } = require('webpack');
+// const { EntryOptionPlugin } = require('webpack');
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -32,15 +32,16 @@ module.exports = {
     
         //     directory: path.join(__dirname, 'public'),
         //   },
+        // historyApiFallback: true,
         static: {
             publicPath: '/',
-            directory: path.join(__dirname)
+            directory: path.join(__dirname, '/bundle'),
         },
     
         port: 8080,
         compress: true,
         proxy: {
-        '/**':{
+        '/':{
             target: 'http://localhost:3000', 
             secure: false
         },

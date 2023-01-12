@@ -1,24 +1,21 @@
 
 import React from "react";
+// import { Route } from "react-router";
+import Signin from "./Signin";
+import Header from './Header';
+import { HashRouter, BrowserRouter, Routes , Route} from "react-router-dom";
+import Login from "./Login";
 // import { useState, useEffect } from "react";
 
 const App = () => {
-  
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("http://localhost:3000/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        setData(data.message)})
-      .catch(a => {console.log(a)})
-    }, []);
 
     return (
-      <h1>
-          {!data ? 'Loading...': data}
-      </h1>
+        <Routes>
+          <Route path ='/' element={<Header /> } />
+            <Route path = '/signin' element = {<Signin />}/>
+            <Route path = '/login' element = {<Login />}/>
+          <Route/>
+        </Routes>
     )
 }
 
