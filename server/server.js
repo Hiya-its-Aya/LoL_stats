@@ -29,6 +29,7 @@ app.post('/signin', signinController.postAccount,  (req, res) => {
 });
 
 app.get('/profile/:id', riotAPI.getPlayerInfo, riotAPI.getMatches, riotAPI.getMatchData, (req, res) => {
+  console.locals(res.locals.sumData.puuid)
   return res.status(200).json(res.locals.match);
 });
 
