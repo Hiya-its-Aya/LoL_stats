@@ -1,6 +1,6 @@
 
 const signinController = require('./signinController');
-const key = 'RGAPI-e97caafc-e845-4b7b-ad53-a2418e7a5784'
+const key = 'RGAPI-f7b1b113-9b6a-4cd4-ba19-a18a4e6ae1ad'
 const riotAPI = {};
 
 riotAPI.getPlayerInfo = (req, res, next) => {
@@ -33,10 +33,32 @@ riotAPI.getMatches = (req, res, next) => {
   })
   .catch (err => {
     console.log(err)
-    next(err)});
-  
+    return next(err)});
 }
 
-riotAPI.getMatchData = () => {}
+riotAPI.getMatchData = (req, res, next) => {
+  const games = res.locals.games;
+  let playerNum;
+  let matchInfo = [];
+  // games.forEach(game => {
+    fetch(`https://americas.api.riotgames.com/lol/match/v5/matches/${games[0]}?api_key=${key}`)
+    .then(match => match.json())
+    .then(match => {
+      res.locals.match = match;
+      // for (let i = 1; i < 11; i++){
+      //   if (res.locals.sumData.puuid === match.metadata.particpants[i]){
+      //     playerNum = i;
+      //   }
+      // }
+      // res.locals.match = info.participants[playerNum-1]
+      console.log(res.locals.match);
+      return next()
+    })
+      .catch (err => {
+        console.log(err)
+        return next(err)});
+    
+  // })
+}
 
 module.exports = riotAPI;

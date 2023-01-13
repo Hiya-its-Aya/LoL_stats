@@ -26,16 +26,13 @@ app.get("/", (req, res) => {
 app.post('/signin', signinController.postAccount,  (req, res) => {
   console.log(res.locals.summoner)
   return res.redirect(302, `/profile/${res.locals.summoner}`)
-})
+});
 
-app.get('/profile/:id', riotAPI.getPlayerInfo, riotAPI.getMatches, (req, res) => {
-  return res.status(200).send(res.locals.games);
-})
-
+app.get('/profile/:id', riotAPI.getPlayerInfo, riotAPI.getMatches, riotAPI.getMatchData, (req, res) => {
+  return res.status(200).json(res.locals.match);
+});
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
-
-
 
 app.use((err, req, res, next) => {
   const defaultErr = {

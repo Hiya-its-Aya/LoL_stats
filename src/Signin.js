@@ -1,12 +1,14 @@
 
 import React from "react";
-import { redirect, useNavigate } from "react-router";
-// const navigate = useNavigate();
+import { Navigate , useParams , redirect, useNavigate} from "react-router-dom";
+
+
 // import { useState, useEffect } from "react";
 
 
 const Signin = () => {
   
+
   const [values, setValues] = React.useState({
     email: '',
     password: '',
@@ -35,8 +37,9 @@ const Signin = () => {
     }));
   };
   
+  //fetches request to server 
   const postSignUp = () => {
-    fetch('http://localhost:3000/signin/', {
+    fetch('http://localhost:3000/signin', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +49,9 @@ const Signin = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data );
-        return redirect(`/profile/${values.league_username}`)
+        //should reroute to /profile/:id
+        setState(id = values.league_username)
+        return useNavigate(`./profile/${values.league_username}`)
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -59,6 +64,7 @@ const Signin = () => {
   }
    
   return (
+    // {<Navigate to = `/profile/${values.league_username}` />}
     <form onSubmit={handleSubmit}>
       <h2>Sign Up</h2> 
       <br/ >

@@ -8,6 +8,7 @@ import Login from "./Login";
 import Account from "./Account";
 // import { useState, useEffect } from "react";
 
+
 const App = () => {
 
     return (
@@ -15,8 +16,8 @@ const App = () => {
           <Route path ='/' element={<Header /> } />
             <Route path = '/signin' element = {<Signin />}/>
             <Route path = '/login' element = {<Login />}/>
+            <Route path ='/profile/:id' element = {<Account />}/>
           <Route/>
-          <Route path ='/profile/:id' element = {<Account />}></Route>
         </Routes>
     )
 }
